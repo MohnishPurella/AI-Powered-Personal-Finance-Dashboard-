@@ -1,0 +1,9 @@
+{
+  "users": [
+    { "id": 1, "username": "admin", "password": "admin123", "token": "mock-token-123" }
+  ],
+  "transactions": [],
+  "budgets": [],
+  "reports": [],
+  "insights": []
+}

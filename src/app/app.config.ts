@@ -6,6 +6,10 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { mockApiInterceptor } from './core/interceptors/mock-api.interceptor';
+
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -15,6 +19,7 @@ export const appConfig: ApplicationConfig = {
       theme: {
         preset: Aura
       }
-    })
+    }),
+    provideHttpClient(withInterceptors([mockApiInterceptor]))
   ]
 };

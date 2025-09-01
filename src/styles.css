@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+/* styles.css */
+:root {
+  --primary-color: #4a90e2;
+  --accent-color: #00c853;
+  --danger-color: #d32f2f;
+  --font-family: 'Roboto', sans-serif;
+  --border-radius: 0.5rem;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: #f5f7fa;
+  margin: 0;
+}
+
+a{
+  text-decoration: none;
+}

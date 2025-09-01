@@ -1,0 +1,8 @@
+.p-card {
+    background: #f5f7fa;
+    color: #000000;
+    box-shadow: var(--p-card-shadow);
+    border-radius: 0; /* removes rounded corners */
+    display: flex;
+    flex-direction: column;
+}
