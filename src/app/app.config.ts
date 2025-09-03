@@ -8,7 +8,7 @@ import Aura from '@primeng/themes/aura';
 
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { mockApiInterceptor } from './core/interceptors/mock-api.interceptor';
-
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,6 +20,7 @@ export const appConfig: ApplicationConfig = {
         preset: Aura
       }
     }),
-    provideHttpClient(withInterceptors([mockApiInterceptor]))
+    provideHttpClient(withInterceptors([mockApiInterceptor])),
+    provideAnimations()
   ]
 };

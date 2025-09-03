@@ -1,8 +1,39 @@
 .p-card {
     background: #f5f7fa;
     color: #000000;
-    box-shadow: var(--p-card-shadow);
+    position: relative !important;
+    box-shadow: 1px 2px 4px #00000080 !important;
+    padding: 10px !important;
     border-radius: 0; /* removes rounded corners */
     display: flex;
     flex-direction: column;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.divider hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid #000;
+}
+
+.divider span {
+    margin: 0 10px;
+    color: #000;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.googleBtn{
+    border: 1px solid #dc3545;
+    background-color: white;
+    color: #dc3545;
+}
+
+::ng-deep .p-toast .p-toast-detail {
+  color: black !important;
 }

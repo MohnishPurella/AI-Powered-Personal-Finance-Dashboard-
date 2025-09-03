@@ -1,30 +1,36 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { authSignal } from '../../../signals/auth.signal';
+import { MessageService } from 'primeng/api';
+import { Toast } from 'primeng/toast';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login-component',
-  imports: [ReactiveFormsModule, CardModule, HttpClientModule, RouterModule],
+  imports: [ReactiveFormsModule, CardModule, RouterModule, Toast, CommonModule],
   templateUrl: './login-component.html',
-  styleUrl: './login-component.css'
+  styleUrl: './login-component.css',
+  providers: [MessageService]
 })
 export class LoginComponent implements OnInit{
 
   loginFormGroup!: FormGroup;
   errorMessage = '';
+  isFormSubmitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private router: Router
-  ){}
-
-  ngOnInit() {
+    private router: Router,
+    private messageService: MessageService
+  ){
     this.buildLoginForm();
   }
+
+  ngOnInit( ) { }
 
   buildLoginForm(){
     this.loginFormGroup = this.formBuilder.group({
@@ -34,8 +40,12 @@ export class LoginComponent implements OnInit{
   }
 
   onLogin() {
+    this.isFormSubmitted = true;
+    if(this.loginFormGroup.invalid){
+      this.showError();
+      return; 
+    }
     const { userName, password } = this.loginFormGroup.value;
-    console.log(userName + ' - ' + password);
     this.http
       .get<any[]>(`http://localhost:3000/users?username=${userName}&password=${password}`)
       .subscribe((users) => {        
@@ -46,5 +56,13 @@ export class LoginComponent implements OnInit{
           this.errorMessage = 'Invalid credentials';
         }
       });
+  }
+
+  get formField(){
+    return this.loginFormGroup.controls;
+  }
+
+  showError() {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Enter Required Fields' });
   }
 }
