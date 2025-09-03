@@ -14,7 +14,7 @@
                     <div class="pt-2">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" formControlName="password" [ngClass]="{ 'is-invalid': isFormSubmitted && formField['password'].invalid }">
-                        <div *ngIf="isFormSubmitted && formField['userName'].invalid" class="invalid-feedback">
+                        <div *ngIf="isFormSubmitted && formField['password'].invalid" class="invalid-feedback">
                             Username is required.
                         </div>
                     </div>                    

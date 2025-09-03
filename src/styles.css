@@ -17,3 +17,8 @@ body {
 a{
   text-decoration: none;
 }
+
+.form-check-input {
+    border-radius: .25em;
+    border: 1px solid #b6bfc8;
+}

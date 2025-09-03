@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent implements OnInit{
 
   loginFormGroup!: FormGroup;
-  errorMessage = '';
+  errorMessage = 'Enter Required Fields';
   isFormSubmitted = false;
 
   constructor(
@@ -39,9 +39,9 @@ export class LoginComponent implements OnInit{
     });
   }
 
-  onLogin() {
-    this.isFormSubmitted = true;
+  onLogin() {    
     if(this.loginFormGroup.invalid){
+      this.isFormSubmitted = true;
       this.showError();
       return; 
     }
@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit{
           this.router.navigate(['/dashboard']);
         } else {
           this.errorMessage = 'Invalid credentials';
+          this.showError();
         }
       });
   }
@@ -63,6 +64,6 @@ export class LoginComponent implements OnInit{
   }
 
   showError() {
-    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Enter Required Fields' });
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: this.errorMessage });
   }
 }
